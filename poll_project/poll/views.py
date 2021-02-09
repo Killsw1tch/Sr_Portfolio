@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 
 from .forms import CreatePollForm
@@ -58,3 +58,11 @@ def results(request, poll_id):
         'poll' : poll
     }
     return render(request, 'poll/results.html', context)
+
+
+def delete(request, pk=None):
+    poll = get_object_or_404(Poll, pk=pk)
+    if request.method == 'POST':
+        poll.delete()
+        return redirect('/')
+    return redirect('/')

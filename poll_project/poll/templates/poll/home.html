@@ -4,7 +4,7 @@
 
 {% block main %}
 <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
+    <div class="col-lg-9">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Polls</h3>
@@ -16,7 +16,11 @@
                     <strong>{{ poll.question }}</strong>
                     <span class="float-right">
                         <a href="{% url 'vote' poll.id %}" class="btn btn-info btn-xs">Vote</a> &nbsp;
-                        <a href="{% url 'results' poll.id %}" class="btn btn-default btn-xs">View Results</a> &nbsp;
+                        <a href="{% url 'results' poll.id %}" class="btn btn-warning btn-xs">View Results</a> &nbsp;
+                        <form action="{% url 'delete' pk=poll.pk %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger mt-2" type="submit">Delete</button>
+                        </form>
                     </span>
                 </li>
                 {% endfor %}
