@@ -23,6 +23,7 @@ Dashboard
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('create_character') }}">New Character</a></li>
             <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
           </ul>
@@ -36,7 +37,7 @@ Dashboard
           <h1 class="page-header">Welcome, {{ name }}. Here's a list of your characters:</h1>
         <ul>
             {% for character in characters if current_user %}
-              <li><a href="#">{{ character.name }}</a></li>
+              <li><a href="{{ url_for('character', id = character.id) }}">{{ character.name }}</a> <a class="btn btn-danger" href="{{ url_for('delete_character', id=character.id) }}">Delete</a></li>
             {% endfor %}
         </ul>
 
