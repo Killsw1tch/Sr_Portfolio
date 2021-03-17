@@ -1,7 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, g, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
+from wtforms import StringField, PasswordField, BooleanField, IntegerField
+from wtforms.widgets import HiddenInput
 from wtforms.validators import InputRequired, Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -58,13 +59,6 @@ class RegisterForm(FlaskForm):
     email = StringField('email', validators=[InputRequired(), Email(message="Invalid Email"), Length(min=6, max=30)])
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=20)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=5, max=80)])
-
-
-class CharacterForm(FlaskForm):
-    name = StringField('Name')
-    ancestry = StringField('Ancestry')
-    archetype = StringField('Archetype')
-    system = StringField('System')
 
 
 db.create_all()
@@ -132,12 +126,13 @@ def character(id):
 @app.route('/characterForm', methods=("GET", "POST"))
 @login_required
 def create_character():
+
     if request.method == 'POST':
         name = request.form['name']
         ancestry = request.form['ancestry']
         archetype = request.form['archetype']
         system = request.form['system']
-        user_id = current_user.get_id()
+        user_id = request.form['user_id']
 
         error = None
 
@@ -149,6 +144,8 @@ def create_character():
             db.session.add(person)
             db.session.commit()
             return redirect(url_for('dashboard'))
+    characters = Character.query.all()
+    return render_template('character-form.html', characters=characters)
 
 
 @app.route('/delete_character/<id>')
@@ -162,11 +159,12 @@ def delete_character(id):
 
 @app.route('/entryForm/<character_id>', methods=("GET", "POST"))
 @login_required
-def create_entry():
+def create_entry(character_id):
+    character = Character.query.get_or_404(character_id)
     if request.method == 'POST':
         title = request.form['title']
         entry = request.form['entry']
-        #character_id = ???
+        character_id = request.form['character_id']
 
         error = None
 
@@ -174,20 +172,21 @@ def create_entry():
             error = 'Entry is required'
 
         if error is None:
-            page = Entry(title=title, entry=entry)
+            page = Entry(title=title, entry=entry, character_id=character_id)
             db.session.add(page)
             db.session.commit()
-            return redirect(url_for('character', id=character_id))
+            return redirect(url_for('dashboard'))
+    entries = Entry.query.all()
+    return render_template('/entry-form.html', entries=entries, character=character)
 
 
 @app.route('/delete_entry/<id>')
 @login_required
-def delete_entry(id, character_id):
+def delete_entry(id):
     entry = Entry.query.get_or_404(id)
-    entity = Entry.query.get_or_404(character_id)
     db.session.delete(entry)
     db.session.commit()
-    return redirect(url_for('character', id=entity))
+    return redirect(url_for('dashboard'))
 
 
 if __name__ == '__main__':

@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}
+New Character
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+    <div class="container">
+
+      <form method="POST">
+          <div class="field">
+          <label>Name</label>
+          <div class="control">
+            <input type="text" class="input" name="name" value="{{ name | default('')}}">
+          </div>
+        </div>
+        <div class="field">
+          <label>Ancestry</label>
+          <div class="control">
+            <input type="text" class="input" name="ancestry" value="{{ ancestry | default('')}}">
+          </div>
+        </div>
+            <div class="field">
+          <label>Archetype</label>
+          <div class="control">
+            <input type="text" class="input" name="archetype" value="{{ archetype | default('')}}">
+          </div>
+        </div>
+          <div class="field">
+          <label>System</label>
+          <div class="control">
+            <input type="text" class="input" name="system" value="{{ system | default('')}}">
+              <input type="hidden" class="input" name="user_id" value="{{ current_user.id }}">
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input type="submit" class="button is-link" value="Submit">
+          </div>
+          <div class="control">
+            <a class="button is-text" href="{{ url_for('dashboard') }}">Cancel</a>
+          </div>
+        </div>
+      </form>
+
+    </div> <!-- /container -->
+{% endblock %}
