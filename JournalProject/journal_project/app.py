@@ -175,18 +175,67 @@ def create_entry(character_id):
             page = Entry(title=title, entry=entry, character_id=character_id)
             db.session.add(page)
             db.session.commit()
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('character', id=character_id))
     entries = Entry.query.all()
     return render_template('/entry-form.html', entries=entries, character=character)
+
+
+@app.route('/edit_character_/<id>', methods=('GET', 'POST'))
+@login_required
+def edit_character(id):
+    character = Character.query.get_or_404(id)
+
+    if request.method == 'POST':
+        character.name = request.form['name']
+        character.ancestry = request.form['ancestry']
+        character.archetype = request.form['archetype']
+        character.system = request.form['system']
+        character.user_id = request.form['user_id']
+
+        error = None
+
+        if not request.form['name']:
+            error = 'Name is required.'
+
+        if error is None:
+            db.session.commit()
+            return redirect(url_for('dashboard'))
+
+    return render_template('character-form.html', name=character.name, ancestry=character.ancestry, archetype=character.archetype, system=character.system)
+
+
+@app.route('/edit_entry/<id>', methods=('GET', 'POST'))
+@login_required
+def edit_entry(id):
+    page = Entry.query.get_or_404(id)
+    character = Character.query.get_or_404(id)
+
+    if request.method == 'POST':
+        page.title = request.form['title']
+        page.entry = request.form['entry']
+        page.character_id = request.form['character_id']
+
+        error = None
+
+        if not request.form['title']:
+            error = 'Title is required.'
+
+        if error is None:
+            db.session.commit()
+            return redirect(url_for('character', id=page.character_id))
+
+    return render_template('entry-form.html', title=page.title, entry=page.entry, character_id=page.character_id,
+                           character=character)
 
 
 @app.route('/delete_entry/<id>')
 @login_required
 def delete_entry(id):
     entry = Entry.query.get_or_404(id)
+    character_id = entry.character_id
     db.session.delete(entry)
     db.session.commit()
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('character', id=character_id))
 
 
 if __name__ == '__main__':
