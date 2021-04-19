@@ -4,29 +4,54 @@
 New Entry
 {% endblock %}
 
+{% block styles %}
+{{ super() }}
+     <link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% endblock %}
+
 {% block content %}
-    <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><i class="fa fa-dice-d20"></i>Character Codex</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('dashboard') }}"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li><a href="{{ url_for('logout') }}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="w3-container container-fluid">
 
       <form method="POST">
         <div class="field">
           <label>Title</label>
           <div class="control">
-            <input type="text" class="input" name="title" value="{{ title | default('')}}">
+            <input type="text" class="input" name="title" placeholder="" value="{{ title | default('')}}">
           </div>
         </div>
         <div class="field">
           <label>Entry</label>
           <div class="control">
-            <textarea class="input" name="entry" value="{{ entry | default('')}}" cols="50" rows="8"></textarea>
+            <textarea class="input" name="entry" value="{{ entry | default('') }}" cols="50" rows="8"></textarea>
             <input type="hidden" class="input" name="character_id" value="{{ character.id }}">
           </div>
         </div>
-        <div class="field is-grouped">
+        <div class="field">
           <div class="control">
-            <input type="submit" class="button is-link" value="Submit">
-          </div>
-          <div class="control">
-            <a class="button is-text" href="{{ url_for('character', id=character.id) }}">Cancel</a>
+            <input type="submit" class="btn btn-primary w3-margin-bottom w3-margin-top" value="Submit">
+            <a class="btn btn-danger" href="{{ url_for('character', id=character.id) }}">Cancel</a>
           </div>
         </div>
       </form>

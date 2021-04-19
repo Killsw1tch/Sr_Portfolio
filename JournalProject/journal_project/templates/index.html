@@ -19,23 +19,18 @@ Landing Page
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Journal App</a>
+          <a class="navbar-brand" href="#">Character Codex</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
 
-      <div class="starter-template">
-        <h1>RPG Journal</h1>
+      <div class="starter-template bg-dark">
+        <h1>Character Codex</h1>
         <p class="lead">Welcome to your new RPG database!<br> All you could ever want for your character documentation!</p>
+          <a class="btn btn-primary" href="{{ url_for('signup') }}">Sign Up</a>
+          <a class="btn btn-warning" href="{{ url_for('login') }}">Login</a>
       </div>
 
     </div><!-- /.container -->

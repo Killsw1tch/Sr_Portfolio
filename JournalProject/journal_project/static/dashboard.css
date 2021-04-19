@@ -84,22 +84,11 @@ body {
   margin-top: 0;
 }
 
+ul.no-bullets{
+  text-decoration: none;
+  color: black;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
-}
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
-}
