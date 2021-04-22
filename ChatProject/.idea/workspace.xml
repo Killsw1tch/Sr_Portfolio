@@ -19,28 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7878a87-4de0-451d-bbca-60cf23b6f98e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../chatsite/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/.idea/chatsite.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chat/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chat/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chat/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chat/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chat/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chat/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chat/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chatsite/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chatsite/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chatsite/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chatsite/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/chatsite/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../chatsite/manage.py" beforeDir="false" />
-    </list>
+    <list default="true" id="e7878a87-4de0-451d-bbca-60cf23b6f98e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,8 +73,12 @@
       <option name="presentableId" value="Default" />
       <updated>1618859380856</updated>
       <workItem from="1618859383223" duration="48000" />
+      <workItem from="1619103260858" duration="83000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -107,6 +90,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
